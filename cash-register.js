@@ -1,4 +1,4 @@
-
+//solution created alongside my mentor
 const currencyObj = {
   "PENNY": 1,
   "NICKEL": 5,
