@@ -1,6 +1,6 @@
 //found "numsArr[i]*Math.pow(10,numsArr.length-i-1)" on freeCodeCamp forum for this challenge solution.
 
-function convertToRoman(num) {
+/*function convertToRoman(num) {
 	
     const numToRomanNums = {1: "I", 2: "II", 3: "III",  4 : "IV", 5: "V", 6: "VI", 7 : "VII", 8 : "VIII", 9 : "IX", 
     10 : "X", 20 : "XX", 30 : "XXX", 40 : "XL", 50 : "L", 60 : "LX", 70 : "LXX", 80 : "LXXX", 90 : "XC", 
@@ -17,47 +17,75 @@ function convertToRoman(num) {
       }
       return finalNum;    
     }
-
+*/
 //completed another way with the suggestion of using an object oriented approach to solve, thanks to my.
-    function convertToRoman(num) {
-      const arrayFromNum = String(num).split('');
-    const lengthOfNum = arrayFromNum.length;
-      let romanNumeral = '';
-      const numToRomanNums = {
-          ones: {
-              0: '', 1: "I", 2: "II", 3: "III",  4 : "IV", 5: "V", 6: "VI", 7 : "VII", 
-              8 : "VIII", 9 : "IX",
-          },
-          tens: {
-              0: '', 1 : "X", 2 : "XX", 3 : "XXX", 4 : "XL", 5 : "L", 6 : "LX", 
-              7 : "LXX", 8 : "LXXX", 9 : "XC",
-          },
-          hundreds: {
-              0: '', 1 : "C", 2 : "CC", 3 : "CCC", 4 : "CD", 5 : "D", 
-              6 : "DC", 7 : "DCC", 8 : "DCCC", 9 : "CM",
-          },
-          thousands : {
-              1: "M", 2: "MM", 3: "MMM"
-          }
-      };
-      if(lengthOfNum === 1){
-          romanNumeral = numToRomanNums.ones[arrayFromNum[0]];
-          console.log(romanNumeral);
-      }
-      if(lengthOfNum === 2){
-          romanNumeral = `${numToRomanNums.tens[arrayFromNum[0]]}${numToRomanNums.ones[arrayFromNum[1]]}`;
-          console.log(romanNumeral);
-      }
-      if(lengthOfNum === 3){
-          romanNumeral = `${numToRomanNums.hundreds[arrayFromNum[0]]}${numToRomanNums.tens[arrayFromNum[1]]}${numToRomanNums.ones[arrayFromNum[2]]}`;
-          console.log(romanNumeral);
-      }
-      if(lengthOfNum === 4){
-          romanNumeral = `${numToRomanNums.thousands[arrayFromNum[0]]}${numToRomanNums.hundreds[arrayFromNum[1]]}${numToRomanNums.tens[arrayFromNum[2]]}${numToRomanNums.ones[arrayFromNum[3]]}`;
-          console.log(romanNumeral);
-      }
-      return romanNumeral;
-  }
+//     function convertToRoman(num) {
+//       const arrayFromNum = String(num).split('');
+//     const lengthOfNum = arrayFromNum.length;
+//       let romanNumeral = '';
+//       const numToRomanNums = {
+//           ones: {
+//               0: '', 1: "I", 2: "II", 3: "III",  4 : "IV", 5: "V", 6: "VI", 7 : "VII", 
+//               8 : "VIII", 9 : "IX",
+//           },
+//           tens: {
+//               0: '', 1 : "X", 2 : "XX", 3 : "XXX", 4 : "XL", 5 : "L", 6 : "LX", 
+//               7 : "LXX", 8 : "LXXX", 9 : "XC",
+//           },
+//           hundreds: {
+//               0: '', 1 : "C", 2 : "CC", 3 : "CCC", 4 : "CD", 5 : "D", 
+//               6 : "DC", 7 : "DCC", 8 : "DCCC", 9 : "CM",
+//           },
+//           thousands : {
+//               1: "M", 2: "MM", 3: "MMM"
+//           }
+//       };
+//       if(lengthOfNum === 1){
+//           romanNumeral = numToRomanNums.ones[arrayFromNum[0]];
+//           console.log(romanNumeral);
+//       }
+//       if(lengthOfNum === 2){
+//           romanNumeral = `${numToRomanNums.tens[arrayFromNum[0]]}${numToRomanNums.ones[arrayFromNum[1]]}`;
+//           console.log(romanNumeral);
+//       }
+//       if(lengthOfNum === 3){
+//           romanNumeral = `${numToRomanNums.hundreds[arrayFromNum[0]]}${numToRomanNums.tens[arrayFromNum[1]]}${numToRomanNums.ones[arrayFromNum[2]]}`;
+//           console.log(romanNumeral);
+//       }
+//       if(lengthOfNum === 4){
+//           romanNumeral = `${numToRomanNums.thousands[arrayFromNum[0]]}${numToRomanNums.hundreds[arrayFromNum[1]]}${numToRomanNums.tens[arrayFromNum[2]]}${numToRomanNums.ones[arrayFromNum[3]]}`;
+//           console.log(romanNumeral);
+//       }
+//       return romanNumeral;
+//   }
   
-  
-  convertToRoman(3000);
+  function convertToRoman(num) {
+    const arrayFromNum = String(num).split('').reverse();
+    let romanNumeral = [];
+    const digitsByPlace = ['ones', 'tens', 'hundreds','thousands'];
+    const numToRomanNums = {
+        ones: {
+            0: null, 1: "I", 2: "II", 3: "III",  4 : "IV", 5: "V", 6: "VI", 7 : "VII", 
+            8 : "VIII", 9 : "IX",
+        },
+        tens: {
+            0: null, 1 : "X", 2 : "XX", 3 : "XXX", 4 : "XL", 5 : "L", 6 : "LX", 
+            7 : "LXX", 8 : "LXXX", 9 : "XC",
+        },
+        hundreds: {
+            0: null, 1 : "C", 2 : "CC", 3 : "CCC", 4 : "CD", 5 : "D", 
+            6 : "DC", 7 : "DCC", 8 : "DCCC", 9 : "CM",
+        },
+        thousands: {
+            1: "M", 2: "MM", 3: "MMM"
+        }
+    };
+
+    for(let i = 0; i < arrayFromNum.length; i++){
+        // console.log(digitsByPlace[i])
+        // console.log(arrayFromNum[i])
+        romanNumeral.push(numToRomanNums[digitsByPlace[i]][arrayFromNum[i]]);
+    }
+    return romanNumeral.reverse().join('');
+}
+  convertToRoman(3999);
