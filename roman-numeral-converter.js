@@ -62,7 +62,7 @@
   function convertToRoman(num) {
     const arrayFromNum = String(num).split('').reverse();
     let romanNumeral = [];
-    const digitsByPlace = ['ones', 'tens', 'hundreds','thousands'];
+    const digitsByPlace = [numToRomanNum.ones, numToRomanNum.tens, numToRomanNum.hundreds, numToRomanNum.thousands];
     const numToRomanNums = {
         ones: {
             0: null, 1: "I", 2: "II", 3: "III",  4 : "IV", 5: "V", 6: "VI", 7 : "VII", 
@@ -84,7 +84,7 @@
     for(let i = 0; i < arrayFromNum.length; i++){
         // console.log(digitsByPlace[i])
         // console.log(arrayFromNum[i])
-        romanNumeral.push(numToRomanNums[digitsByPlace[i]][arrayFromNum[i]]);
+        romanNumeral.push(digitsByPlace[i][arrayFromNum[i]]);
     }
     return romanNumeral.reverse().join('');
 }
